@@ -6,3 +6,18 @@ Django auth solution for Token creation/updation for a session.
 ```
 python manage.py makemigrations djangoauthtoken
 ```
+
+Things to do:
+
+- [] Add api for Token.
+- [] Add api for RefreshToken.
+- [] Add manager for create user.
+- [] Add manager for create token.
+- [] Add serializer for user.
+- [] Add serializer for token.
+- [] Add JWT token logic to this module.
+- [] Add github Actions.
+- [] Add pypi module push in this code base.
+- [] Add api for user sign up.
+- [] Add a custom command to delete invalid tokens
+
