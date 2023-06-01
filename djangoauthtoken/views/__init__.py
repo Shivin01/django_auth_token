@@ -1,0 +1,1 @@
+from djangoauthtoken.views.user import detail

@@ -7,6 +7,19 @@ Django auth solution for Token creation/updation for a session.
 python manage.py makemigrations djangoauthtoken
 ```
 
+## Run command to migrate:
+
+```
+python manage.py migrate
+```
+
+## Run command to create superuser
+
+```
+python manage.py createsuperuser
+```
+
+
 Things to do:
 
 - [] Add api for Token.
@@ -20,4 +33,3 @@ Things to do:
 - [] Add pypi module push in this code base.
 - [] Add api for user sign up.
 - [] Add a custom command to delete invalid tokens
-

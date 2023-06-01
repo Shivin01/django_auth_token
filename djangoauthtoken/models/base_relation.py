@@ -13,4 +13,3 @@ class Base(models.Model):
 
     class Meta:
         abstract = True
-        # app_label = "django_auth_token"
