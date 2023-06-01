@@ -17,7 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
-from djangoauthtoken.views import detail, UserViewSet
+from djangoauthtoken.views import (
+    detail, 
+    UserViewSet, 
+    login
+)
 
 
 router = routers.DefaultRouter()
@@ -27,4 +31,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("user/", detail, name="user_details"),
     path('', include(router.urls)),
+    path('login', login, name='login')
 ]
