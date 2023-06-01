@@ -1,1 +1,1 @@
-from djangoauthtoken.views.user import detail
+from djangoauthtoken.views.user import detail, UserViewSet
