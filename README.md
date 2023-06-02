@@ -22,7 +22,8 @@ python manage.py createsuperuser
 
 Things to do:
 
-- [] Add api for Token.
+- [X] Add api for Token.
+- [X] Add api for login.
 - [] Add api for RefreshToken.
 - [] Add manager for create user.
 - [] Add manager for create token.
@@ -32,4 +33,4 @@ Things to do:
 - [] Add github Actions.
 - [] Add pypi module push in this code base.
 - [] Add api for user sign up.
-- [] Add a custom command to delete invalid tokens
+- [] Add a custom command to delete invalid tokens.

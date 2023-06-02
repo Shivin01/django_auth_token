@@ -1,7 +1,4 @@
-import jwt
-
 from django.core.exceptions import ObjectDoesNotExist
-from django.conf import settings
 from django.contrib import auth
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
@@ -9,7 +6,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from djangoauthtoken.models import TokenUser, Token
-from djangoauthtoken.utils import get_epoch, get_or_create_csrf_token
+from djangoauthtoken.utils import get_or_create_csrf_token
 
 
 @csrf_exempt
@@ -26,28 +23,9 @@ def login(request):
     password = data['password']
     try:
         if auth.authenticate(username=username, password=password):
-            epoch_time = get_epoch()
-            user = TokenUser.objects.get(username=username)
-            token = jwt.encode({
-                "user_id": user.id,
-                "username": user.username,
-                "type": settings.AUTH_TOKEN,
-                "date": epoch_time
-                },
-                settings.JWT_SECRET,
-                algorithm=settings.JWT_ALGO
-                )
-
-            refresh_token = jwt.encode({
-                "user_id": user.id,
-                "username": user.username,
-                "type": settings.REFRESH_TOKEN,
-                "date": epoch_time
-                },
-                settings.JWT_SECRET,
-                algorithm=settings.JWT_ALGO
-                )
-            user_token = Token(token=token, refresh_token=refresh_token, user=user)
+            
+            user = TokenUser.objects.get(username=username)            
+            user_token = Token(user=user)
             user_token.save()
             _csrf = get_or_create_csrf_token(request)
 
