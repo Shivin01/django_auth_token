@@ -1,11 +1,16 @@
+import jwt
+
 from django.core.exceptions import ObjectDoesNotExist
+from django.conf import settings
 from django.contrib import auth
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from djangoauthtoken.models import TokenUser
+from djangoauthtoken.models import TokenUser, Token
+from djangoauthtoken.utils import get_epoch, get_or_create_csrf_token
+
 
 @csrf_exempt
 @api_view(["POST"])
@@ -16,22 +21,48 @@ def login(request):
     #TODO: Flag to switch to Email.
     """
     data = request.data
-    print(data)
+ 
     username = data['username']
     password = data['password']
     try:
-        if _auth := auth.authenticate(username=username, password=password):
-            # create a token object.
-            # create a csrf token and assign that.
-            # return user details.
-            print('AUTH')
-            print(_auth)
-            token = True
+        if auth.authenticate(username=username, password=password):
+            epoch_time = get_epoch()
             user = TokenUser.objects.get(username=username)
-            print(user)
+            token = jwt.encode({
+                "user_id": user.id,
+                "username": user.username,
+                "type": settings.AUTH_TOKEN,
+                "date": epoch_time
+                },
+                settings.JWT_SECRET,
+                algorithm=settings.JWT_ALGO
+                )
+
+            refresh_token = jwt.encode({
+                "user_id": user.id,
+                "username": user.username,
+                "type": settings.REFRESH_TOKEN,
+                "date": epoch_time
+                },
+                settings.JWT_SECRET,
+                algorithm=settings.JWT_ALGO
+                )
+            user_token = Token(token=token, refresh_token=refresh_token, user=user)
+            user_token.save()
+            _csrf = get_or_create_csrf_token(request)
+
             return Response({
-                "message": "need to update this",
-                }, status=status.HTTP_200_OK)
+                "id": user.id,
+                "username": user.username,
+                "email": user.email,
+                "token": user_token.token,
+                "refresh_token": user_token.refresh_token,
+                "expires_at": user_token.expiry_time
+                },
+                status=status.HTTP_200_OK, 
+                headers={
+                    'X-CSRFToken': _csrf
+                })
         else:
             # Create your own Exception layer.
             raise ObjectDoesNotExist

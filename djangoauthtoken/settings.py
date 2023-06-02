@@ -138,3 +138,8 @@ REST_FRAMEWORK = {
     # ),
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
+
+JWT_ALGO = "HS256"
+JWT_SECRET = "some_secret"
+AUTH_TOKEN = 0
+REFRESH_TOKEN = 1
