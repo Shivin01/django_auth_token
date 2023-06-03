@@ -28,7 +28,7 @@ Things to do:
 - [X] Add manager for create token.
 - [X] Add serializer for user.
 - [] Add manager for create user.
-- [] Add a custom command to delete invalid tokens.
 - [] Add api for user sign up.
+- [] Add a custom command to delete invalid tokens.
 - [] Add github Actions.
 - [] Add pypi module push in this code base.

@@ -20,7 +20,8 @@ from rest_framework import routers
 from djangoauthtoken.views import (
     UserViewSet, 
     login,
-    refresh_token
+    refresh_token,
+    sign_up
 )
 
 
@@ -31,5 +32,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('login', login, name='login'),
-    path('refresh_token', refresh_token, name='refresh_token')
+    path('refresh_token', refresh_token, name='refresh_token'),
+    path('sign_up', sign_up, name='sing_up'),
 ]
