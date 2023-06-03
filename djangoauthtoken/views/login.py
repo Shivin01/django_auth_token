@@ -2,15 +2,17 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import auth
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from djangoauthtoken.models import TokenUser, Token
 from djangoauthtoken.utils import get_or_create_csrf_token
 
-
-@csrf_exempt
 @api_view(["POST"])
+@authentication_classes([])
+@permission_classes([])
+@csrf_exempt
 def login(request):
     """
     Login view
@@ -18,13 +20,12 @@ def login(request):
     #TODO: Flag to switch to Email.
     """
     data = request.data
- 
     username = data['username']
     password = data['password']
     try:
         if auth.authenticate(username=username, password=password):
             
-            user = TokenUser.objects.get(username=username)            
+            user = TokenUser.objects.get(username=username)
             user_token = Token(user=user)
             user_token.save()
             _csrf = get_or_create_csrf_token(request)
