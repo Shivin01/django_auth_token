@@ -27,8 +27,8 @@ Things to do:
 - [X] Add api for RefreshToken.
 - [X] Add manager for create token.
 - [X] Add serializer for user.
-- [] Add manager for create user.
-- [] Add api for user sign up.
+- [X] Add manager for create user.
+- [X] Add api for user sign up.
 - [] Add a custom command to delete invalid tokens.
 - [] Add github Actions.
 - [] Add pypi module push in this code base.
