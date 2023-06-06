@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from rest_framework import exceptions
 from rest_framework.authentication import BaseAuthentication, get_authorization_header
 
@@ -17,10 +19,7 @@ class CustomTokenAuthentication(BaseAuthentication):
     def authenticate(self, request):
         
         auth = get_authorization_header(request).split()
-        print('Auth')
-        print(auth)
         if not auth or auth[0].lower() != self.keyword.lower().encode():
-            print('Inside if')
             return None
 
         if len(auth) == 1:
@@ -39,15 +38,20 @@ class CustomTokenAuthentication(BaseAuthentication):
         return self.authenticate_credentials(token)
     
     def authenticate_credentials(self, key):
-        print('Here')
         try:
+            # Check for token.
             token = Token.objects.select_related('user').get(token=key)
+
             # check for expiry time.
+            now = datetime.utcnow()
+            _diff = now - token.created_at.replace(tzinfo=None)
+            if _diff.total_seconds() > token.expiry_time:
+                msg = 'Token expired.'
+                raise exceptions.AuthenticationFailed(msg)
         except Token.DoesNotExist:
             raise exceptions.AuthenticationFailed('Invalid token.')
 
         return (token.user, token)
     
     def authenticate_header(self, request):
-        print('Inside here')
         return self.keyword

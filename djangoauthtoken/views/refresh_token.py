@@ -25,17 +25,17 @@ def refresh_token(request):
 
         user = TokenUser.objects.get(id=refresh_token_decode['user_id'])
         user_token = Token.objects.get(user=user, refresh_token=refresh_token)
-
         token = Token(user=user)
         token.save()
+        print(token.id)
 
         return Response({
                     "id": user.id,
                     "username": user.username,
                     "email": user.email,
-                    "token": user_token.token,
-                    "refresh_token": user_token.refresh_token,
-                    "expires_at": user_token.expiry_time
+                    "token": token.token,
+                    "refresh_token": token.refresh_token,
+                    "expires_at": token.expiry_time
                     },
                     status=status.HTTP_200_OK)
     except:

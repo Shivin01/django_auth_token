@@ -32,3 +32,16 @@ Things to do:
 - [] Add a custom command to delete invalid tokens.
 - [] Add github Actions.
 - [] Add pypi module push in this code base.
+
+
+Twilio WebSocket Integration.
+Django web socket.
+Django - React web socket.
+Expiry add logic.
+Pypi push.
+Django app install required modules.
+Contact model.
+Call log.
+Contacts. API
+Call Log API.
+Whisper/Google speech integrate.
