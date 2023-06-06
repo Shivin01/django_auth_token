@@ -10,14 +10,15 @@ class CustomTokenAuthentication(BaseAuthentication):
     Clients should authenticate by passing the token key in the "Authorization"
     HTTP header, prepended with the string "Token ".  For example:
 
-        Authorization: Token 401f7ac837da42b97f613d789819ff93537bee6a
+        Authorization: Bearer 401f7ac837da42b97f613d789819ff93537bee6a
     """
-    keyword = 'Token'
+    keyword = 'Bearer'
 
     def authenticate(self, request):
-        print('There')
+        
         auth = get_authorization_header(request).split()
-
+        print('Auth')
+        print(auth)
         if not auth or auth[0].lower() != self.keyword.lower().encode():
             print('Inside if')
             return None
@@ -41,6 +42,7 @@ class CustomTokenAuthentication(BaseAuthentication):
         print('Here')
         try:
             token = Token.objects.select_related('user').get(token=key)
+            # check for expiry time.
         except Token.DoesNotExist:
             raise exceptions.AuthenticationFailed('Invalid token.')
 

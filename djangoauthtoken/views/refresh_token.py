@@ -1,6 +1,9 @@
+import jwt
+
 from rest_framework import status
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.response import Response
+from django.conf import settings
 
 from djangoauthtoken.models import TokenUser, Token
 
@@ -13,12 +16,15 @@ def refresh_token(request):
     """
     try:
         data = request.data
-        token = data['token']
         refresh_token = data['refresh_token']
-        user_id = data['user_id']
+        refresh_token_decode = jwt.decode(refresh_token,
+                                        settings.JWT_SECRET,
+                                        algorithms=settings.JWT_ALGO)
 
-        user = TokenUser.objects.get(id=user_id)
-        user_token = Token.objects.get(user=user, token=token, refresh_token=refresh_token)
+        print(refresh_token_decode)
+
+        user = TokenUser.objects.get(id=refresh_token_decode['user_id'])
+        user_token = Token.objects.get(user=user, refresh_token=refresh_token)
 
         token = Token(user=user)
         token.save()

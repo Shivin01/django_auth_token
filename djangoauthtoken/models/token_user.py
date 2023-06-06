@@ -17,7 +17,7 @@ phone_regex = RegexValidator(
 
 class TokenUser(AbstractUser, Base):
     email = CaseInsensitiveEmailField(max_length=Base.MAX_LENGTH_MEDIUM)
-    phone_number = models.CharField(validators=[phone_regex], max_length=17)    
+    phone_number = models.CharField(validators=[phone_regex], max_length=17)
     
     def __str__(self) -> str:
         return self.email
