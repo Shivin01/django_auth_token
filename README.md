@@ -35,9 +35,9 @@ Things to do:
 
 
 Twilio WebSocket Integration.
+Django Twilio integration
 Django web socket.
 Django - React web socket.
-Expiry add logic.
 Pypi push.
 Django app install required modules.
 Contact model.
