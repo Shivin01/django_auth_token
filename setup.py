@@ -29,7 +29,7 @@ def get_install_requires():
 
 
 setup(
-    name='django-token-auth',
+    name='auth-token-django',
     description='Django token authentication',
     version = "0.0.1",
     author='Shivin Agarwal',
