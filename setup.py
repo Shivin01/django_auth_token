@@ -38,7 +38,7 @@ setup(
     url='https://github.com/Shivin01/django_auth_token',
     classifiers=[
         'Intended Audience :: Developers',
-        'Topic :: Software Development :: :: Libraries :: Python Modules',
+        'Topic :: Software Development :: Libraries :: Python Modules',
         'Programming Language :: Python :: 3.9'
     ],
     install_requires=get_install_requires(),
