@@ -31,8 +31,9 @@ def get_install_requires():
 setup(
     name='django-auth-token',
     description='Django token authentication',
+    version = "0.0.1",
     author='Shivin Agarwal',
-    long_description=get_file_contents('README.txt'),
+    long_description=get_file_contents('README.md'),
     author_email='shivin.agarwal15@gmail.com',
     url='https://github.com/Shivin01/django_auth_token',
     classifiers=[
