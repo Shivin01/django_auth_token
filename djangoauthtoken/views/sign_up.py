@@ -19,9 +19,10 @@ def sign_up(request):
 
         user, exists = TokenUser.objects.get_or_create(
             username=username,
-            email=email,
-            password=password
+            email=email
         )
+        user.set_password(password)
+        user.save()
 
         if not exists:
             raise Exception
