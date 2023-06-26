@@ -20,11 +20,11 @@ def refresh_token(request):
         refresh_token_decode = jwt.decode(refresh_token,
                                         settings.JWT_SECRET,
                                         algorithms=settings.JWT_ALGO)
-
-        print(refresh_token_decode)
-
+        # Check for user.
         user = TokenUser.objects.get(id=refresh_token_decode['user_id'])
-        user_token = Token.objects.get(user=user, refresh_token=refresh_token)
+        # check for token.
+        Token.objects.get(user=user, refresh_token=refresh_token)
+        # save new token.
         token = Token(user=user)
         token.save()
         print(token.id)
