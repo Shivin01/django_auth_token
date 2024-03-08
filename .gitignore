@@ -6,3 +6,4 @@ venv
 dist/
 build/
 django_auth_token.egg-info/
+.idea
