@@ -8,7 +8,7 @@ from django.core.validators import RegexValidator
 from djangoauthtoken.models import Base
 from djangoauthtoken.models.custom_fields import CaseInsensitiveEmailField
 
-tz = [(item, datetime.datetime.now(pytz.timezone(item)).strftime("%z") + " " + item ) for item in pytz.all_timezones ]
+tz = [(item, datetime.datetime.now(pytz.timezone(item)).strftime("%z") + " " + item) for item in pytz.all_timezones]
 
 phone_regex = RegexValidator(
     regex=r'^\+?1?\d{9,15}',
@@ -16,7 +16,8 @@ phone_regex = RegexValidator(
 )
 
 class TokenUser(AbstractUser, Base):
-    email = CaseInsensitiveEmailField(max_length=Base.MAX_LENGTH_MEDIUM, unique=True)
+
+    email = CaseInsensitiveEmailField(max_length=Base.MAX_LENGTH_LARGE, unique=True)
     phone_number = models.CharField(validators=[phone_regex], max_length=17, null=True)
     
     def __str__(self) -> str:
