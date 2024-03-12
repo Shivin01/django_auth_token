@@ -9,8 +9,8 @@ from djangoauthtoken.utils import get_epoch
 
 class Token(Base):
 
-    token = models.CharField(max_length=Base.MAX_LENGTH_SMALL)
-    refresh_token = models.CharField(max_length=Base.MAX_LENGTH_SMALL)
+    token = models.CharField(max_length=Base.MAX_LENGTH_LARGE)
+    refresh_token = models.CharField(max_length=Base.MAX_LENGTH_LARGE)
     expiry_time = models.IntegerField(default=settings.EXPIRY)
     user = models.ForeignKey(TokenUser, on_delete=models.CASCADE)
 
