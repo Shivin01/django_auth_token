@@ -1,6 +1,10 @@
 # djangoauthtoken
 Django auth solution for Token creation/updation for a session.
 
+## Add Djangoauthtoken in your project.
+
+Add `djangoauthtoken` in your INSTALLED_APPS settings to see in action.
+
 ### Run make migratons command:
 
 ```
@@ -29,6 +33,11 @@ Things to do:
 - [X] Add serializer for user.
 - [X] Add manager for create user.
 - [X] Add api for user sign up.
+- [X] Add github Actions.
+- [X] Add pypi module push in this code base.
 - [] Add a custom command to delete invalid tokens.
-- [] Add github Actions.
-- [] Add pypi module push in this code base.
+- [] Update README with screenshots and other details.
+
+
+
+
