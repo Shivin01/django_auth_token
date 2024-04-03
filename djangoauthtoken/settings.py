@@ -82,7 +82,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -145,3 +144,4 @@ JWT_ALGO = "HS256"
 JWT_SECRET = "some_secret"
 AUTH_TOKEN = 0
 REFRESH_TOKEN = 1
+USERNAME_LOGIN_METHOD = True
