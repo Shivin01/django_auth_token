@@ -23,8 +23,9 @@ class TokenUser(AbstractUser, Base):
     phone_number = models.CharField(validators=[phone_regex], max_length=17, null=True)
     if not settings.USERNAME_LOGIN_METHOD:
         email = CaseInsensitiveEmailField(max_length=Base.MAX_LENGTH_LARGE, unique=True)
-        username = CaseInsensitiveEmailField(max_length=Base.MAX_LENGTH_LARGE, blank=True, required=False)
-        REQUIRED_FIELDS = ["email"]
+        username = CaseInsensitiveEmailField(max_length=Base.MAX_LENGTH_LARGE, blank=True)
+        REQUIRED_FIELDS = []
+        USERNAME_FIELD = "email"
     
     def __str__(self) -> str:
         return self.username if settings.USERNAME_LOGIN_METHOD else self.email
