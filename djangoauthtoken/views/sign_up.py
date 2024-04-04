@@ -6,6 +6,7 @@ from django.conf import settings
 from djangoauthtoken.models import TokenUser, Token
 from djangoauthtoken.utils import get_or_create_csrf_token
 
+
 @api_view(["POST"])
 @authentication_classes([])
 @permission_classes([])
@@ -59,4 +60,3 @@ def sign_up(request):
         }, status=status.HTTP_201_CREATED)
     except:
         return Response(status=status.HTTP_400_BAD_REQUEST)
-

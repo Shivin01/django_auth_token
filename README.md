@@ -5,6 +5,25 @@ Django auth solution for Token creation/updation for a session.
 
 Add `djangoauthtoken` in your INSTALLED_APPS settings to see in action.
 
+## Add This seeting is your project
+
+```python
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'djangoauthtoken.middleware.CustomTokenAuthentication'
+    ],
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        'rest_framework_xml.renderers.XMLRenderer',
+    ],
+}
+```
+
 ### Run make migratons command:
 
 ```
@@ -22,6 +41,7 @@ python manage.py migrate
 ```
 python manage.py createsuperuser
 ```
+
 
 
 Things to do:
