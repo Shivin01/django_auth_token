@@ -8,3 +8,4 @@ build/
 django_auth_token.egg-info/
 .idea
 *db.sqlite3
+auth_token_django.egg-info/

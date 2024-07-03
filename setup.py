@@ -34,6 +34,7 @@ setup(
     version="0.2.4",
     author='Shivin Agarwal',
     long_description=get_file_contents('README.md'),
+    long_description_content_type="text/markdown",
     author_email='shivin.agarwal15@gmail.com',
     url='https://github.com/Shivin01/django_auth_token',
     classifiers=[

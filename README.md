@@ -1,4 +1,5 @@
 # djangoauthtoken
+
 Django auth solution for Token creation/updation for a session.
 
 ## Add Djangoauthtoken in your project.
@@ -26,23 +27,21 @@ REST_FRAMEWORK = {
 
 ### Run make migratons command:
 
-```
+```sh
 python manage.py makemigrations djangoauthtoken
 ```
 
 ## Run command to migrate:
 
-```
+```sh
 python manage.py migrate
 ```
 
 ## Run command to create superuser
 
-```
+```sh
 python manage.py createsuperuser
 ```
-
-
 
 Things to do:
 
